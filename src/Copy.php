@@ -3,6 +3,7 @@
 namespace AiAe\VitoCopySSL;
 
 use App\Actions\SSL\CreateSSL;
+use App\DTOs\DynamicField;
 use App\DTOs\DynamicForm;
 use App\Models\Ssl;
 use App\SiteFeatures\Action;
@@ -23,7 +24,27 @@ class Copy extends Action
 
     public function form(): ?DynamicForm
     {
+        // Fetch active custom SSLs from other sites
+        $ssls = Ssl::query()
+            ->select(['id', 'domains', 'is_active'])
+            ->where('site_id', '!=', $this->site->id)
+            ->where('type', 'custom')
+            ->where('is_active', true)
+            ->get()
+            ->map(fn ($ssl) => head($ssl->domains))
+            ->toArray();
+
         return DynamicForm::make([
+            DynamicField::make('alert')
+                ->alert()
+                ->label('Important!')
+                ->description('Plugin is work in progress. Use at your own risk.'),
+
+            DynamicField::make('site')
+                ->select()
+                ->options($ssls)
+                ->label('Sites')
+                ->description('Select which site to copy the SSL certificate from.'),
         ]);
     }
 
