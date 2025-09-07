@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Vito\Plugins\RichardAnderson\VitoCopySsl\Actions;
+namespace App\Vito\Plugins\AiAe\VitoCopySsl\Actions;
 
 use App\Actions\SSL\CreateSSL;
 use App\DTOs\DynamicField;

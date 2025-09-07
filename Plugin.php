@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Vito\Plugins\RichardAnderson\VitoCopySsl;
+namespace App\Vito\Plugins\AiAe\VitoCopySsl;
 
 use App\Plugins\AbstractPlugin;
 use App\Plugins\RegisterSiteFeature;
 use App\Plugins\RegisterSiteFeatureAction;
-use App\Vito\Plugins\RichardAnderson\VitoCopySsl\Actions\Copy;
+use App\Vito\Plugins\AiAe\VitoCopySsl\Actions\Copy;
 
 class Plugin extends AbstractPlugin
 {
